@@ -14,19 +14,20 @@
 </head>
 
 <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="page-bg" aria-hidden="true"></div>
 
     <header class="site-header">
-        <a class="brand" href="#">Voyanta</a>
+        <a class="brand" href="index.html">Voyanta</a>
         <nav class="main-nav" aria-label="Main navigation">
+            <a href="index.html" aria-current="page">Home</a>
             <a href="#features">Features</a>
             <a href="#plans">Plans</a>
-            <a href="#preview">Preview</a>
             <a href="chat.html">Chat</a>
         </nav>
     </header>
 
-    <main>
+    <main id="main-content">
         <section class="hero">
             <div class="hero-copy">
                 <p class="eyebrow">Travel Planner App</p>
@@ -36,9 +37,11 @@
                     Designed for quick decisions and calm planning.
                 </p>
                 <div class="hero-actions">
-                    <a class="btn btn-primary" href="chat.html">Start Planning</a>
+                    <a class="btn btn-primary" href="chat.html" aria-label="Open travel planner chat page">Start
+                        Planning</a>
                     <a class="btn btn-secondary" href="#features">See Features</a>
                 </div>
+                <p class="hero-meta">No login required • Budget-first planning • Friendly for mobile</p>
             </div>
 
             <aside class="hero-card" id="preview" aria-label="Trip preview">
