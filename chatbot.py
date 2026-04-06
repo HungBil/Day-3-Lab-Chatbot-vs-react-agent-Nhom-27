@@ -1,29 +1,13 @@
-"""
-main_chatbot.py — Điểm chạy chính cho Travel Planner Chatbot baseline.
-
-Cách chạy:
-    python main_chatbot.py
-
-Biến môi trường (trong file .env):
-    LOCAL_MODEL_PATH  — đường dẫn tới file .gguf (mặc định: ./models/Phi-3-mini-4k-instruct-q4.gguf)
-"""
-
 import os
 import sys
 
 from dotenv import load_dotenv
 
-# Đảm bảo import đúng khi chạy từ thư mục gốc
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 load_dotenv()
 
 from src.chatbot.travel_chatbot import TravelPlannerChatbot  # noqa: E402
-
-
-# ──────────────────────────────────────────────────────────────────────────────
-# Helpers
-# ──────────────────────────────────────────────────────────────────────────────
 
 BANNER = """
 ╔══════════════════════════════════════════════════════════╗
@@ -68,7 +52,6 @@ def main():
         "LOCAL_MODEL_PATH",
         "./models/Phi-3-mini-4k-instruct-q4.gguf"
     )
-    # Resolve đường dẫn tương đối so với thư mục gốc project
     if not os.path.isabs(model_path):
         model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), model_path)
 
@@ -95,7 +78,6 @@ def main():
         if not user_input:
             continue
 
-        # Xử lý lệnh đặc biệt
         if user_input.lower() == "/quit":
             print("👋 Tạm biệt! Chúc bạn có chuyến đi vui vẻ!")
             break
@@ -107,7 +89,6 @@ def main():
             print_history(chatbot)
             continue
 
-        # Chat bình thường (stream)
         print_streamed(chatbot, user_input)
 
 
