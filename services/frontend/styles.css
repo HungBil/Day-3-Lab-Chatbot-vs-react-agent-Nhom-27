@@ -13,6 +13,7 @@
     --shadow: 0 16px 40px rgba(25, 38, 42, 0.12);
     --radius-lg: 24px;
     --radius-md: 16px;
+    --focus-ring: 2px solid #0b8f6f;
 }
 
 * {
@@ -24,7 +25,26 @@ body {
     font-family: "Space Grotesk", "Segoe UI", sans-serif;
     color: var(--ink);
     min-height: 100vh;
+    line-height: 1.45;
     background: linear-gradient(165deg, var(--bg-top) 0%, var(--bg-mid) 52%, var(--bg-bottom) 100%);
+}
+
+.skip-link {
+    position: absolute;
+    left: 0.8rem;
+    top: -100px;
+    background: #ffffff;
+    color: #063a2e;
+    border: 1px solid #8ad3bf;
+    border-radius: 8px;
+    padding: 0.45rem 0.7rem;
+    z-index: 100;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.skip-link:focus-visible {
+    top: 0.8rem;
 }
 
 .page-bg {
@@ -48,10 +68,15 @@ body {
 }
 
 .site-header {
-    padding: 1.2rem 0;
+    padding: 1.2rem 2rem;
     display: flex;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(7px);
 }
 
 .brand {
@@ -64,16 +89,25 @@ body {
 .main-nav {
     display: flex;
     gap: 1.2rem;
+    flex-wrap: wrap;
 }
 
 .main-nav a {
     color: var(--ink-soft);
     text-decoration: none;
     font-weight: 500;
+    padding: 0.25rem 0.55rem;
+    border-radius: 999px;
 }
 
 .main-nav a:hover {
     color: var(--accent-strong);
+    background: #eef5f4;
+}
+
+.main-nav a[aria-current="page"] {
+    color: #0a5e49;
+    background: #e8f7f2;
 }
 
 .hero {
@@ -117,6 +151,13 @@ h1 {
     line-height: 1.6;
 }
 
+.hero-meta {
+    margin-top: 0.9rem;
+    margin-bottom: 0;
+    color: #446067;
+    font-size: 0.93rem;
+}
+
 .hero-actions {
     margin-top: 1.4rem;
     display: flex;
@@ -134,6 +175,14 @@ h1 {
 
 .btn:hover {
     transform: translateY(-1px);
+}
+
+.btn:focus-visible,
+.main-nav a:focus-visible,
+.brand:focus-visible,
+.chat-suggestions a:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: 2px;
 }
 
 .btn-primary {
@@ -209,6 +258,12 @@ h1 {
     border-radius: var(--radius-md);
     padding: 1rem;
     box-shadow: 0 7px 20px rgba(35, 47, 52, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 25px rgba(35, 47, 52, 0.12);
 }
 
 .feature-card h3 {
@@ -242,6 +297,11 @@ h1 {
     border: 1px solid #e4d7c9;
     border-radius: var(--radius-md);
     padding: 1rem;
+    transition: transform 0.25s ease;
+}
+
+.plan-card:hover {
+    transform: translateY(-4px);
 }
 
 .plan-tag {
@@ -304,9 +364,14 @@ h1 {
     font-size: clamp(1.35rem, 3vw, 2rem);
 }
 
+.chat-subtitle {
+    margin: 0.5rem 0 0;
+    color: var(--ink-soft);
+}
+
 .chat-window {
     padding: 1rem;
-    min-height: 420px;
+    min-height: clamp(260px, 46vh, 420px);
     max-height: 58vh;
     overflow-y: auto;
     display: flex;
@@ -361,6 +426,27 @@ h1 {
     outline-offset: 1px;
 }
 
+.chat-suggestions {
+    padding: 0 0.9rem 0.9rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.chat-suggestions a {
+    color: #155a49;
+    text-decoration: none;
+    font-size: 0.85rem;
+    background: #ebf6f3;
+    border: 1px solid #c8e7de;
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+}
+
+.chat-suggestions a:hover {
+    background: #e0f2ed;
+}
+
 .sr-only {
     position: absolute;
     width: 1px;
@@ -412,6 +498,7 @@ h1 {
     .main-nav {
         gap: 0.75rem;
         font-size: 0.92rem;
+        justify-content: flex-end;
     }
 
     .brand {
@@ -434,5 +521,16 @@ h1 {
 
     .chat-input-area {
         flex-direction: column;
+    }
+
+    .chat-suggestions {
+        padding-top: 0.1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
     }
 }

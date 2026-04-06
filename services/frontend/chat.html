@@ -14,6 +14,7 @@
 </head>
 
 <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="page-bg" aria-hidden="true"></div>
 
     <header class="site-header">
@@ -22,16 +23,17 @@
             <a href="index.html">Home</a>
             <a href="index.html#features">Features</a>
             <a href="index.html#plans">Plans</a>
-            <a href="chat.html">Chat</a>
+            <a href="chat.html" aria-current="page">Chat</a>
         </nav>
     </header>
 
-    <main class="chat-page">
+    <main class="chat-page" id="main-content">
         <section class="chat-shell" aria-label="Travel planner chat">
             <div class="chat-header">
                 <div>
                     <p class="eyebrow">Travel Planner Agent</p>
                     <h1>Chat With Voyanta</h1>
+                    <p class="chat-subtitle">Describe destination, dates, budget, and interests to get a clear plan.</p>
                 </div>
                 <a class="btn btn-secondary" href="index.html">Back to Landing</a>
             </div>
@@ -61,8 +63,14 @@
                 <input id="trip-message" name="message" type="text"
                     placeholder="Example: 2 days in Hoi An, budget 2 million, culture focus"
                     aria-label="Type your trip request" />
-                <button class="btn btn-primary" type="submit">Send</button>
+                <button class="btn btn-primary" type="button">Send</button>
             </form>
+
+            <div class="chat-suggestions" aria-label="Example prompts">
+                <a href="#">Da Nang 3 days, 5 million, beach</a>
+                <a href="#">Sapa in December weather advice</a>
+                <a href="#">Hoi An budget trip for 2 days</a>
+            </div>
         </section>
     </main>
 
